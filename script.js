@@ -12,7 +12,7 @@ const scene = new THREE.Scene()
  */
 const cube = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: '#ff0000' })
+    new THREE.MeshBasicMaterial({ color: '#50808E' })
 )
 scene.add(cube)
 
@@ -51,7 +51,8 @@ scene.add(camera)
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
+    canvas: canvas,
+    alpha: true
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
@@ -67,6 +68,7 @@ const tick = () =>
 
     // Render
     renderer.render(scene, camera)
+    renderer.setClearAlpha(0)
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
