@@ -10,11 +10,11 @@ const scene = new THREE.Scene()
 /**
  * Test cube
  */
-const cube = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: '#50808E' })
-)
-scene.add(cube)
+// const cube = new THREE.Mesh(
+//     new THREE.BoxGeometry(1, 1, 1),
+//     new THREE.MeshBasicMaterial({ color: '#50808E' })
+// )
+// scene.add(cube)
 
 /**
  * Sizes
@@ -70,8 +70,66 @@ const tick = () =>
     renderer.render(scene, camera)
     renderer.setClearAlpha(0)
 
+    //  // Animate meshes
+    //  for(const mesh of sectionMeshes)
+    //  {
+    //      mesh.rotation.x = elapsedTime * 0.1
+    //      mesh.rotation.y = elapsedTime * 0.12
+    //  }
+    
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
+
 }
 
 tick()
+
+// Material
+const material = new THREE.MeshToonMaterial({ color: '#ffeded' })
+
+// Meshes
+const mesh1 = new THREE.Mesh(
+    new THREE.TorusGeometry(1, 0.4, 16, 60),
+    material
+)
+const mesh2 = new THREE.Mesh(
+    new THREE.ConeGeometry(1, 2, 32),
+    material
+)
+const mesh3 = new THREE.Mesh(
+    new THREE.TorusKnotGeometry(0.8, 0.35, 100, 16),
+    material
+)
+
+scene.add(mesh1, mesh2, mesh3)
+
+/**
+ * Lights
+ */
+const directionalLight = new THREE.DirectionalLight('#ffffff', 1)
+directionalLight.position.set(1, 1, 0)
+scene.add(directionalLight)
+
+//Postition - temporal code
+
+mesh1.position.y = 1
+mesh1.scale.set(0.5, 0.5, 0.5)
+
+// mesh2.visible = true
+mesh2.position.y = - 0.5
+mesh2.scale.set(0.5, 0.5, 0.5)
+
+mesh3.position.y = - 2
+mesh3.scale.set(0.5, 0.5, 0.5)
+
+const objectDistance = 2
+
+mesh1.position.y = - objectsDistance * 0
+mesh2.position.y = - objectsDistance * 1
+mesh3.position.y = - objectsDistance * 2
+
+const objectsDistance = 4
+
+const sectionMeshes = [ mesh1, mesh2, mesh3 ]
+
+
