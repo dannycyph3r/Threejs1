@@ -71,13 +71,13 @@ const tick = () =>
     renderer.setClearAlpha(0)
 
     //  // Animate meshes
-    //  for(const mesh of sectionMeshes)
-    //  {
-    //      mesh.rotation.x = elapsedTime * 0.1
-    //      mesh.rotation.y = elapsedTime * 0.12
-    //  }
+     for(const mesh of sectionMeshes)
+     {
+         mesh.rotation.x = elapsedTime * 0.1
+         mesh.rotation.y = elapsedTime * 0.12
+     }
     
-    // Call tick again on the next frame
+   // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 
 }
